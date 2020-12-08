@@ -1,10 +1,10 @@
 import NavBar from '../components/NavBar'
 
-export default function BarcodeNumInput() {
+export default function PersonalInfo() {
     return (
         <div>
             <NavBar/>
-            BarcodeNumInput page
+            PersonalInfo page
         </div>
     )
 }
