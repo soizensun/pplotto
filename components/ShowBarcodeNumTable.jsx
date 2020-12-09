@@ -83,7 +83,7 @@ export default class ShowBarcodeNumTable extends React.Component {
                 title: '#',
                 dataIndex: 'key',
                 key: 'key',
-                width: '5%',
+                width: '10%',
                 align: 'center'
             },
             {
@@ -97,20 +97,20 @@ export default class ShowBarcodeNumTable extends React.Component {
                 title: 'งวดที่',
                 dataIndex: 'roundNumber',
                 key: 'roundNumber',
-                width: '30%',
+                width: '25%',
                 ...this.getColumnSearchProps('roundNumber'),
             },
             {
                 title: 'ชุดที่',
                 dataIndex: 'groupNumber',
                 key: 'groupNumber',
-                width: '30%',
+                width: '25%',
                 ...this.getColumnSearchProps('groupNumber'),
             },
             {
                 title: '',
                 key: 'delete',
-                width: '5%',
+                width: '10%',
                 align: "center",
                 render: () => <a>ลบ</a>,
               },
