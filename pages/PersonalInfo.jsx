@@ -1,10 +1,12 @@
-import NavBar from '../components/NavBar'
+import MainLayout from '../layouts/MainLayout'
 
 export default function PersonalInfo() {
     return (
-        <div>
-            <NavBar/>
-            PersonalInfo page
-        </div>
+        <MainLayout>
+            <h1>
+                PersonalInfo page
+            </h1>
+            
+        </MainLayout>
     )
 }

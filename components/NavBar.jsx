@@ -9,11 +9,11 @@ export default function NavBar() {
                 <Link href="/" passHref>
                     <Navbar.Brand href="">PP lotto</Navbar.Brand>
                 </Link>
-                
+
                 <Navbar.Toggle aria-controls="responsive-navbar-nav" />
                 <Navbar.Collapse id="responsive-navbar-nav">
                     <Nav className="mr-auto">
-                        <Link href="/BarcodeNumInput" passHref>
+                        <Link href="/" passHref>
                             <Nav.Link>หน้าหลัก</Nav.Link>
                         </Link>
                         <Link href="/MatchingResult" passHref>
@@ -24,7 +24,9 @@ export default function NavBar() {
                         </Link>
                     </Nav>
                     <Nav>
-                        <Nav.Link>ออกจากระบบ</Nav.Link>
+                        <Link href="/" passHref>
+                            <Nav.Link>ออกจากระบบ</Nav.Link>
+                        </Link>
                     </Nav>
                 </Navbar.Collapse>
             </Navbar>

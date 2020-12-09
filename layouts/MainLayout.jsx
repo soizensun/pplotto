@@ -1,10 +1,10 @@
 import NavBar from '../components/NavBar'
 
-export default function BarcodeNumInput() {
+export default function MainLayout(props) {
     return (
         <div>
             <NavBar/>
-            BarcodeNumInput page
+            {props.children}
         </div>
     )
 }
