@@ -7,47 +7,16 @@ import FormControlLabel from '@material-ui/core/FormControlLabel';
 import FormControl from '@material-ui/core/FormControl';
 import Switch from '@material-ui/core/Switch';
 import ShowBarcodeNumTable from "../components/ShowBarcodeNumTable";
+import ShowDeleteNumTable from "../components/ShowDeleteNumTable";
+import { Modal, Button } from 'antd';
 
-
-const data = [
-  // {
-  //     key: '1',
-  //     name: 'John Brown',
-  //     age: 32,
-  //     address: 'New York No. 1 Lake Park',
-  // },
-
-  {
-    key: '1',
-    bookNumber: "9200",
-    roundNumber: "45",
-    groupNumber: "25"
-  },
-  {
-    key: '2',
-    bookNumber: "9200",
-    roundNumber: "45",
-    groupNumber: "25"
-  },
-  {
-    key: '3',
-    bookNumber: "9200",
-    roundNumber: "45",
-    groupNumber: "25"
-  },
-  {
-    key: '4',
-    bookNumber: "9200",
-    roundNumber: "45",
-    groupNumber: "25"
-  }
-
-];
 
 export default function Home() {
   const [barcodeNums, setBarcodeNums] = useState([])
+  const [needToDeleteNums, setNeedToDeleteNums] = useState([])
   const [inputValue, setInputValue] = useState("")
   const [objKey, setObjKey] = useState(1)
+  const [showDeleteTable, setShowDeleteTable] = useState(false)
 
   const onInputChange = event => {
     setInputValue(event.target.value)
@@ -67,7 +36,13 @@ export default function Home() {
       tmpObj.groupNumber = inputValue.slice(4, 6)
       tmpObj.roundNumber = inputValue.slice(2, 4)
 
-      setBarcodeNums([...barcodeNums, tmpObj])
+      if (showDeleteTable == false) {
+        setBarcodeNums([tmpObj])
+      }
+      else {
+        setNeedToDeleteNums([tmpObj])
+      }
+
       setInputValue("")
     }
   }
@@ -78,6 +53,7 @@ export default function Home() {
       <div>
         <div className={Style.container}>
           <TextField
+            color="red"
             label="ตัวเลขบาร์โค้ด"
             variant="outlined"
             className={Style.textInput}
@@ -91,7 +67,7 @@ export default function Home() {
             <FormGroup aria-label="position" row>
               <FormControlLabel
                 value="deleteToggle"
-                control={<Switch color="primary" />}
+                control={<Switch color="primary" onClick={() => setShowDeleteTable(!showDeleteTable)} />}
                 label="สแกนเพื่อลบ"
                 labelPlacement="deleteToggle"
               />
@@ -100,8 +76,13 @@ export default function Home() {
         </div>
       </div>
 
-      <div className={Style.container2}>
-        <ShowBarcodeNumTable data={barcodeNums} />
+      <div className={Style.container2} >
+        <div style={{ display: showDeleteTable ? "none " : "block" }}>
+          <ShowBarcodeNumTable data={barcodeNums} deleteToggle={showDeleteTable} />
+        </div>
+        <div style={{ display: showDeleteTable ? "block " : "none" }}>
+          <ShowDeleteNumTable data={needToDeleteNums} />
+        </div>
       </div>
 
     </MainLayout>
