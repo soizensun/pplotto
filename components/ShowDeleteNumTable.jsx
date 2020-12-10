@@ -5,8 +5,8 @@ import Highlighter from 'react-highlight-words';
 import { SearchOutlined, DeleteTwoTone } from '@ant-design/icons';
 import Style from '../styles/InputTable.module.css'
 
-export default class ShowBarcodeNumTable extends React.Component {
 
+export default class ShowDeleteNumTable extends React.Component {
     state = {
         searchText: '',
         searchedColumn: '',
@@ -17,12 +17,6 @@ export default class ShowBarcodeNumTable extends React.Component {
         if (nextProps.data !== this.props.data) {
             this.setState({ dataTable: [...this.state.dataTable, nextProps.data[0]] });
         }
-    }
-
-    onDelete = (key, e) => {
-        e.preventDefault();
-        const data = this.state.dataTable.filter(item => item.key !== key);
-        this.setState({ dataTable: data });
     }
 
     handleSearch = (selectedKeys, confirm, dataIndex) => {
@@ -37,6 +31,12 @@ export default class ShowBarcodeNumTable extends React.Component {
         clearFilters();
         this.setState({ searchText: '' });
     };
+
+    onDelete = (key, e) => {
+        e.preventDefault();
+        const data = this.state.dataTable.filter(item => item.key !== key);
+        this.setState({ dataTable: data });
+    }
 
     getColumnSearchProps = dataIndex => ({
         filterDropdown: ({ setSelectedKeys, selectedKeys, confirm, clearFilters }) => (
@@ -112,7 +112,7 @@ export default class ShowBarcodeNumTable extends React.Component {
                 key: 'groupNumber',
                 width: '25%',
                 ...this.getColumnSearchProps('groupNumber'),
-            },
+            },            
             {
                 title: '',
                 key: 'delete',
@@ -130,22 +130,22 @@ export default class ShowBarcodeNumTable extends React.Component {
 
         return (
             <div>
-                <Table
-                    bordered
+                <Table bordered
                     columns={columns}
                     dataSource={this.state.dataTable}
                     size="small"
                     pagination={false}
-                    scroll={{ y: 340 }}
-                />
+                    scroll={{ y: 340 }} />
                 <div className={Style.container}>
-                    <Button className={Style.submitBTN} onClick={() => console.log(this.state.dataTable)} size="large">
-                        ส่งเลข{this.props.deleteToggle}
+                    <Button className={Style.cancelBTN} size="large">
+                        ยกเลิก
+                    </Button>
+                    <Button className={Style.deleteBTN} size="large">
+                        ลบ
                     </Button>
                 </div>
-                
             </div>
 
-        );
+        )
     }
 }

@@ -1,0 +1,40 @@
+.container {
+    display: flex;
+    justify-content: center;
+    /* background-color: bisque; */
+    margin-top: 30px;
+}
+
+.submitBTN {
+    background-color: #7FB3D5 ;
+    color: white;
+}
+
+.submitBTN:hover {
+    background-color: #5499C7 ;
+    color: white;
+}
+
+.deleteBTN {
+    background-color: #EC7063 ;
+    color: white;
+    margin-left: 3px;
+}
+
+.deleteBTN:hover {
+    background-color: #E74C3C  ;
+    color: white;
+    margin-left: 3px;
+}
+
+.cancelBTN {
+    background-color: #5D6D7E ;
+    color: white;
+    margin-right: 3px;
+}
+
+.cancelBTN:hover {
+    background-color: #34495E ;
+    color: white;
+    margin-right: 3px;
+}
