@@ -46,6 +46,7 @@ export default class ShowDeleteNumTable extends React.Component {
     confirmDelete = () => {
         this.props.deletedData(this.state.dataTable)
         this.props.toggleSwitch(false)
+        this.props.clearTextField()
         this.setState({ dataTable: [] })
     }
 
@@ -149,19 +150,20 @@ export default class ShowDeleteNumTable extends React.Component {
                     scroll={{ y: 340 }} />
                 <div className={Style.container}>
 
-                    <Button className={Style.cancelBTN} size="large" onClick={this.cancelDelete}>
+                    <button className={Style.cancelBTN} onClick={this.confirmDelete}>
                         ยกเลิก
-                    </Button>
+                    </button>
                     {
                         (this.state.dataTable.length == 0) ?
-                            <Button className={Style.deleteBTN} size="large" onClick={this.confirmDelete} id="deleteBTN" disabled="false">
+                            <button className={Style.deleteBTN} onClick={this.confirmDelete} disabled="false">
                                 ลบ
-                        </Button>
+                        </button>
                             :
-                            <Button className={Style.deleteBTN} size="large" onClick={this.confirmDelete} id="deleteBTN">
+                            <button className={Style.deleteBTN} onClick={this.confirmDelete} >
                                 ลบ
-                        </Button>
+                        </button>
                     }
+
                 </div>
             </div>
 
