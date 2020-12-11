@@ -17,6 +17,18 @@ export default class ShowBarcodeNumTable extends React.Component {
         if (nextProps.data !== this.props.data) {
             this.setState({ dataTable: [...this.state.dataTable, nextProps.data[0]] });
         }
+        if (nextProps.deletedData !== this.props.deletedData) {
+            const newData = [...this.state.dataTable]
+            nextProps.deletedData.map(item => {
+                this.state.dataTable.map(item1 => {
+                    if (item.bookNumber == item1.bookNumber && item.roundNumber == item1.roundNumber && item.groupNumber == item1.groupNumber) {
+                        var i = newData.indexOf(item1)
+                        if (i > -1) newData.splice(i, 1)
+                    }
+                })
+            })
+            this.setState({ dataTable: newData })
+        }
     }
 
     onDelete = (key, e) => {
@@ -32,6 +44,10 @@ export default class ShowBarcodeNumTable extends React.Component {
             searchedColumn: dataIndex,
         });
     };
+
+    onSubmit = () => {
+        console.log(this.state.dataTable);
+    }
 
     handleReset = clearFilters => {
         clearFilters();
@@ -139,13 +155,18 @@ export default class ShowBarcodeNumTable extends React.Component {
                     scroll={{ y: 340 }}
                 />
                 <div className={Style.container}>
-                    <Button className={Style.submitBTN} onClick={() => console.log(this.state.dataTable)} size="large">
-                        ส่งเลข{this.props.deleteToggle}
-                    </Button>
+                    {
+                        (this.state.dataTable.length == 0) ?
+                            <Button className={Style.submitBTN} onClick={this.onSubmit} size="large" disabled="false">
+                                ส่งเลข
+                            </Button>
+                            :
+                            <Button className={Style.submitBTN} onClick={this.onSubmit} size="large">
+                                ส่งเลข
+                            </Button>
+                    }
                 </div>
-                
             </div>
-
         );
     }
 }
