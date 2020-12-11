@@ -157,13 +157,13 @@ export default class ShowBarcodeNumTable extends React.Component {
                 <div className={Style.container}>
                     {
                         (this.state.dataTable.length == 0) ?
-                            <Button className={Style.submitBTN} onClick={this.onSubmit} size="large" disabled="false">
+                            <button type="button" onClick={this.onSubmit} className={Style.submitBTN} disabled="false">
                                 ส่งเลข
-                            </Button>
+                            </button>
                             :
                             <Button className={Style.submitBTN} onClick={this.onSubmit} size="large">
                                 ส่งเลข
-                            </Button>
+                        </Button>
                     }
                 </div>
             </div>
