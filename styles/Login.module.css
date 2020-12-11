@@ -1,8 +1,7 @@
 .container {
-    display: flex;
-    justify-content: center;
+    text-align: center;
     /* background-color: bisque; */
-    margin-top: 50px;
+    margin-top: 90px;
 }
 
 .submitBTN {
@@ -11,16 +10,15 @@
 }
 
 .submitBTN {
-    background-color: #3949ABaf;
+    background-color: #488e70c4;
     color: white;
-    width: 200px;
-    height: 45px;
-    border: solid 1.5px #3949AB ;
+    width: 300px;
+    height: 50px;
+    border: solid 1.5px #488E70;
     font-size: 17px;
     border-radius: 4px;
     transition: .6s;
     overflow: hidden;
-    font-family: monospace;
 }
 
 .submitBTN:focus {
@@ -56,7 +54,7 @@
 }
 
 .submitBTN:hover {
-    background: #3949AB ;
+    background: #488E70;
     cursor: pointer;
     color: rgb(255, 255, 255)
 }
@@ -80,29 +78,32 @@
     cursor: no-drop;
 }
 
-.deleteBTN {
+
+
+
+
+.registerBTN {
     transform: translate(0%, 0%);
     margin-left: 3px;
 }
 
-.deleteBTN {
-    background-color: #E74C3Caf;
+.registerBTN {
+    background-color: #f5b041c7;
     color: white;
-    width: 150px;
-    height: 45px;
-    border: solid 1.5px #E74C3C;
+    width: 300px;
+    height: 50px;
+    border: solid 1.5px #F5B041 ;
     font-size: 17px;
     border-radius: 4px;
     transition: .6s;
     overflow: hidden;
-    font-family: monospace;
 }
 
-.deleteBTN:focus {
+.registerBTN:focus {
     outline: none;
 }
 
-.deleteBTN::before {
+.registerBTN::before {
     content: '';
     display: block;
     position: absolute;
@@ -116,7 +117,7 @@
     transform: translateX(-130px) skewX(-15deg);
 }
 
-.deleteBTN:after {
+.registerBTN:after {
     content: '';
     display: block;
     position: absolute;
@@ -130,102 +131,25 @@
     transform: translateX(-100px) skewX(-15deg);
 }
 
-.deleteBTN:hover {
-    background: #E74C3C;
+.registerBTN:hover {
+    background: #F5B041 ;
     cursor: pointer;
     color: rgb(255, 255, 255)
 }
 
-.deleteBTN:hover:before {
+.registerBTN:hover:before {
     transform: translateX(300px) skewX(-15deg);
     opacity: .6;
     transition: .9s;
 }
 
-.deleteBTN:hover:before {
+.registerBTN:hover:before {
     transform: translateX(300px) skewX(-15deg);
     opacity: 1;
     transition: .9s;
 }
 
-.deleteBTN:disabled, .deleteBTN[disabled] {
-    border: 1px solid #999999;
-    background-color: #cccccc;
-    color: #666666;
-    cursor: no-drop;
-}
-
-
-
-.cancelBTN {
-    transform: translate(0%, 0%);
-    margin-left: 3px;
-}
-
-.cancelBTN {
-    background-color: #34495Eaf;
-    color: white;
-    width: 150px;
-    height: 45px;
-    border: solid 1.5px #34495E;
-    font-size: 17px;
-    border-radius: 4px;
-    transition: .6s;
-    overflow: hidden;
-    font-family: monospace;
-}
-
-.cancelBTN:focus {
-    outline: none;
-}
-
-.cancelBTN::before {
-    content: '';
-    display: block;
-    position: absolute;
-    background: rgba(255, 255, 255, 0.7);
-    width: 60px;
-    height: 100%;
-    left: 0;
-    top: 0;
-    opacity: .5s;
-    filter: blur(30px);
-    transform: translateX(-130px) skewX(-15deg);
-}
-
-.cancelBTN:after {
-    content: '';
-    display: block;
-    position: absolute;
-    background: rgba(255, 255, 255, 0.2);
-    width: 30px;
-    height: 100%;
-    left: 30px;
-    top: 0;
-    opacity: 0;
-    filter: blur(30px);
-    transform: translateX(-100px) skewX(-15deg);
-}
-
-.cancelBTN:hover {
-    background: #34495E;
-    cursor: pointer;
-    color: rgb(255, 255, 255)
-}
-
-.cancelBTN:hover:before {
-    transform: translateX(300px) skewX(-15deg);
-    opacity: .6;
-    transition: .9s;
-}
-
-.cancelBTN:hover:before {
-    transform: translateX(300px) skewX(-15deg);
-    opacity: 1;
-    transition: .9s;
-}
-
-.cancelBTN:disabled, .submitBTN[disabled] {
+.registerBTN:disabled, .registerBTN[disabled] {
     border: 1px solid #999999;
     background-color: #cccccc;
     color: #666666;
