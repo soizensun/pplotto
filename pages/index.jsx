@@ -50,7 +50,7 @@ export default function Home() {
     
     message.success(
       {
-        content: `ลบสำเร็จ ${deletedData.length} ชุด`,
+        content: `ลบสำเร็จ`,
         className: 'custom-class',
         style: {
           marginTop: '45px',
