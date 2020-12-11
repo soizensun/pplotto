@@ -5,7 +5,6 @@ import Highlighter from 'react-highlight-words';
 import { SearchOutlined, DeleteTwoTone } from '@ant-design/icons';
 import Style from '../styles/InputTable.module.css'
 
-
 export default class ShowDeleteNumTable extends React.Component {
     state = {
         searchText: '',
@@ -36,6 +35,18 @@ export default class ShowDeleteNumTable extends React.Component {
         e.preventDefault();
         const data = this.state.dataTable.filter(item => item.key !== key);
         this.setState({ dataTable: data });
+    }
+
+
+    cancelDelete = () => {
+        this.setState({ dataTable: [] })
+        this.props.clearTextField()
+    }
+
+    confirmDelete = () => {
+        this.props.deletedData(this.state.dataTable)
+        this.props.toggleSwitch(false)
+        this.setState({ dataTable: [] })
     }
 
     getColumnSearchProps = dataIndex => ({
@@ -112,7 +123,7 @@ export default class ShowDeleteNumTable extends React.Component {
                 key: 'groupNumber',
                 width: '25%',
                 ...this.getColumnSearchProps('groupNumber'),
-            },            
+            },
             {
                 title: '',
                 key: 'delete',
@@ -137,12 +148,20 @@ export default class ShowDeleteNumTable extends React.Component {
                     pagination={false}
                     scroll={{ y: 340 }} />
                 <div className={Style.container}>
-                    <Button className={Style.cancelBTN} size="large">
+
+                    <Button className={Style.cancelBTN} size="large" onClick={this.cancelDelete}>
                         ยกเลิก
                     </Button>
-                    <Button className={Style.deleteBTN} size="large">
-                        ลบ
-                    </Button>
+                    {
+                        (this.state.dataTable.length == 0) ?
+                            <Button className={Style.deleteBTN} size="large" onClick={this.confirmDelete} id="deleteBTN" disabled="false">
+                                ลบ
+                        </Button>
+                            :
+                            <Button className={Style.deleteBTN} size="large" onClick={this.confirmDelete} id="deleteBTN">
+                                ลบ
+                        </Button>
+                    }
                 </div>
             </div>
 
