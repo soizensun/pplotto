@@ -46,6 +46,7 @@ export default class ShowDeleteNumTable extends React.Component {
     confirmDelete = () => {
         this.props.deletedData(this.state.dataTable)
         this.props.toggleSwitch(false)
+        this.props.clearTextField()
         this.setState({ dataTable: [] })
     }
 
