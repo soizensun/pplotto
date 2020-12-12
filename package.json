@@ -5,7 +5,8 @@
   "scripts": {
     "dev": "next dev",
     "build": "next build",
-    "start": "next start"
+    "start": "next start",
+    "mockserver": "npx mb --configfile testmock.ejs --allowInjection"
   },
   "dependencies": {
     "@material-ui/core": "^4.11.2",
