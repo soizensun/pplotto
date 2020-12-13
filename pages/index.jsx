@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react'
 import TextField from '@material-ui/core/TextField';
-import { message } from 'antd';
+// import { message } from 'antd';
 import Style from '../styles/LoginPage.module.css'
 import { FormControl } from '@material-ui/core';
 import Typography from '@material-ui/core/Typography';
@@ -14,35 +14,35 @@ export default function Login() {
     const [password, setPassword] = useState("")
 
     useEffect(() => {
-        message.destroy()
+        // message.destroy()
         console.log(localStorage.getItem("currentUser"));
     }, [])
 
     const onSubmit = () => {
         if (username != "" && password != "") {
-            message.loading('กำลังเข้าสู่ระบบ', 0);
+            // message.loading('กำลังเข้าสู่ระบบ', 0);
 
             axios.post('/api/checkLogin', JSON.stringify({ "username": username, "password": password }), { headers: HEADERS })
                 .then(res => {
                     console.log(res.data);
                     if (res.data.status == true) {
-                        message.destroy()
+                        // message.destroy()
                         location.href = "/Home";
                         localStorage.setItem('currentUser', username);
                     }
                     else {
-                        message.destroy()
-                        message.warning('กรุณาลองใหม่', 3);
+                        // message.destroy()
+                        // message.warning('กรุณาลองใหม่', 3);
                     }
                 })
                 .catch(err => {
-                    message.destroy()
-                    message.warning('กรุณาลองใหม่', 3);
+                    // message.destroy()
+                    // message.warning('กรุณาลองใหม่', 3);
                 })
 
         }
         else {
-            message.warning('กรุณาใส่ ชื่อผู้ใช้หรือรหัสผ่าน ให้ครบ', 3);
+            // message.warning('กรุณาใส่ ชื่อผู้ใช้หรือรหัสผ่าน ให้ครบ', 3);
         }
 
     }
