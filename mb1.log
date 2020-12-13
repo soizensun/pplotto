@@ -1,0 +1,44 @@
+{"message":"[mb:2525] Running with --allowInjection set. See http://localhost:2525/docs/security for security info","level":"warn","timestamp":"2020-12-13T05:59:28.769Z"}
+{"message":"[mb:2525] mountebank v2.3.3 now taking orders - point your browser to http://localhost:2525/ for help","level":"info","timestamp":"2020-12-13T05:59:28.774Z"}
+{"message":"[mb:2525] PUT /imposters","level":"info","timestamp":"2020-12-13T05:59:28.796Z"}
+{"message":"[http:9001 ea] Open for business...","level":"info","timestamp":"2020-12-13T05:59:28.819Z"}
+{"message":"[http:9001 ea] ::1:49492 => GET /unmatch","level":"info","timestamp":"2020-12-13T05:59:30.998Z"}
+{"message":"[http:9001 ea] ::1:49493 => GET /favicon.ico","level":"info","timestamp":"2020-12-13T05:59:31.088Z"}
+{"message":"[http:9001 ea] ::ffff:127.0.0.1:49513 => GET /matchedNums","level":"info","timestamp":"2020-12-13T05:59:43.643Z"}
+{"message":"[http:9001 ea] ::ffff:127.0.0.1:49514 => GET /unmatch","level":"info","timestamp":"2020-12-13T05:59:43.745Z"}
+{"message":"[http:9001 ea] ::ffff:127.0.0.1:49572 => GET /matchedNums","level":"info","timestamp":"2020-12-13T06:00:39.663Z"}
+{"message":"[http:9001 ea] ::ffff:127.0.0.1:49573 => GET /unmatch","level":"info","timestamp":"2020-12-13T06:00:39.673Z"}
+{"message":"[http:9001 ea] ::ffff:127.0.0.1:49580 => GET /matchedNums","level":"info","timestamp":"2020-12-13T06:00:42.902Z"}
+{"message":"[http:9001 ea] ::ffff:127.0.0.1:49581 => GET /unmatch","level":"info","timestamp":"2020-12-13T06:00:42.908Z"}
+{"message":"[http:9001 ea] ::ffff:127.0.0.1:49600 => GET /matchedNums","level":"info","timestamp":"2020-12-13T06:00:55.780Z"}
+{"message":"[http:9001 ea] ::ffff:127.0.0.1:49601 => GET /unmatch","level":"info","timestamp":"2020-12-13T06:00:55.786Z"}
+{"message":"[http:9001 ea] ::ffff:127.0.0.1:49660 => GET /matchedNums","level":"info","timestamp":"2020-12-13T06:01:54.914Z"}
+{"message":"[http:9001 ea] ::ffff:127.0.0.1:49662 => GET /unmatch","level":"info","timestamp":"2020-12-13T06:01:55.007Z"}
+{"message":"[http:9001 ea] ::ffff:127.0.0.1:49697 => GET /matchedNums","level":"info","timestamp":"2020-12-13T06:02:12.803Z"}
+{"message":"[http:9001 ea] ::ffff:127.0.0.1:49698 => GET /unmatch","level":"info","timestamp":"2020-12-13T06:02:12.806Z"}
+{"message":"[http:9001 ea] ::ffff:127.0.0.1:49714 => GET /matchedNums","level":"info","timestamp":"2020-12-13T06:02:22.736Z"}
+{"message":"[http:9001 ea] ::ffff:127.0.0.1:49715 => POST /unmatch","level":"info","timestamp":"2020-12-13T06:02:22.743Z"}
+{"message":"[http:9001 ea] ::ffff:127.0.0.1:49768 => POST /unmatch","level":"info","timestamp":"2020-12-13T06:03:06.163Z"}
+{"message":"[http:9001 ea] ::ffff:127.0.0.1:49769 => GET /matchedNums","level":"info","timestamp":"2020-12-13T06:03:06.167Z"}
+{"message":"[http:9001 ea] ::ffff:127.0.0.1:49797 => GET /matchedNums","level":"info","timestamp":"2020-12-13T06:03:24.219Z"}
+{"message":"[http:9001 ea] ::ffff:127.0.0.1:49798 => POST /unmatch","level":"info","timestamp":"2020-12-13T06:03:24.226Z"}
+{"message":"[http:9001 ea] ::ffff:127.0.0.1:50120 => GET /matchedNums","level":"info","timestamp":"2020-12-13T06:05:46.115Z"}
+{"message":"[http:9001 ea] ::ffff:127.0.0.1:50121 => POST /unmatch","level":"info","timestamp":"2020-12-13T06:05:46.120Z"}
+{"message":"[http:9001 ea] ::ffff:127.0.0.1:50573 => GET /matchedNums","level":"info","timestamp":"2020-12-13T06:06:30.766Z"}
+{"message":"[http:9001 ea] ::ffff:127.0.0.1:50574 => POST /unmatch","level":"info","timestamp":"2020-12-13T06:06:30.771Z"}
+{"message":"[http:9001 ea] ::ffff:127.0.0.1:50575 => GET /matchedNums","level":"info","timestamp":"2020-12-13T06:06:30.783Z"}
+{"message":"[http:9001 ea] ::ffff:127.0.0.1:50576 => POST /unmatch","level":"info","timestamp":"2020-12-13T06:06:30.795Z"}
+{"message":"[http:9001 ea] ::ffff:127.0.0.1:50577 => GET /matchedNums","level":"info","timestamp":"2020-12-13T06:06:30.802Z"}
+{"message":"[http:9001 ea] ::ffff:127.0.0.1:50578 => POST /unmatch","level":"info","timestamp":"2020-12-13T06:06:30.812Z"}
+{"message":"[http:9001 ea] ::ffff:127.0.0.1:50579 => GET /matchedNums","level":"info","timestamp":"2020-12-13T06:06:30.950Z"}
+{"message":"[http:9001 ea] ::ffff:127.0.0.1:50580 => POST /unmatch","level":"info","timestamp":"2020-12-13T06:06:30.956Z"}
+{"message":"[http:9001 ea] ::ffff:127.0.0.1:50591 => POST /unmatch","level":"info","timestamp":"2020-12-13T06:06:34.325Z"}
+{"message":"[http:9001 ea] ::ffff:127.0.0.1:50592 => GET /matchedNums","level":"info","timestamp":"2020-12-13T06:06:34.329Z"}
+{"message":"[http:9001 ea] ::ffff:127.0.0.1:50598 => GET /matchedNums","level":"info","timestamp":"2020-12-13T06:06:38.381Z"}
+{"message":"[http:9001 ea] ::ffff:127.0.0.1:50599 => POST /unmatch","level":"info","timestamp":"2020-12-13T06:06:38.384Z"}
+{"message":"[http:9001 ea] ::ffff:127.0.0.1:50625 => GET /matchedNums","level":"info","timestamp":"2020-12-13T06:06:56.731Z"}
+{"message":"[http:9001 ea] ::ffff:127.0.0.1:50626 => POST /unmatch","level":"info","timestamp":"2020-12-13T06:06:56.735Z"}
+{"message":"[http:9001 ea] ::ffff:127.0.0.1:50890 => GET /matchedNums","level":"info","timestamp":"2020-12-13T06:09:41.133Z"}
+{"message":"[http:9001 ea] ::ffff:127.0.0.1:50891 => POST /unmatch","level":"info","timestamp":"2020-12-13T06:09:41.248Z"}
+{"message":"[http:9001 ea] ::ffff:127.0.0.1:51984 => GET /matchedNums","level":"info","timestamp":"2020-12-13T06:24:26.602Z"}
+{"message":"[mb:2525] Adios - see you soon?","level":"info","timestamp":"2020-12-13T06:24:48.452Z"}

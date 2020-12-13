@@ -1,46 +1,26 @@
 import React from 'react'
 import 'antd/dist/antd.css';
-import { Table, Input, Button, Space, message } from 'antd';
+import { Table, Input, Button, Space } from 'antd';
 import Highlighter from 'react-highlight-words';
 import { SearchOutlined, DeleteTwoTone } from '@ant-design/icons';
 import Style from '../styles/InputTable.module.css'
 import axios from 'axios';
+import { message } from 'antd';
+export default class MatchTable extends React.Component {
 
-const HEADERS = { 'Content-Type': 'application/json' }
-export default class ShowBarcodeNumTable extends React.Component {
+    // HEADERS = { 'Content-Type': 'application/json' }
 
     state = {
         searchText: '',
         searchedColumn: '',
-        dataTable: []
+        dataTable: [],
+        wantToDeleteList: []
     };
-
-    componentDidMount(){
-        message.destroy()
-    }
 
     componentWillReceiveProps(nextProps) {
         if (nextProps.data !== this.props.data) {
-            this.setState({ dataTable: [...this.state.dataTable, nextProps.data[0]] });
+            this.setState({ dataTable: nextProps.data });
         }
-        if (nextProps.deletedData !== this.props.deletedData) {
-            const newData = [...this.state.dataTable]
-            nextProps.deletedData.map(item => {
-                this.state.dataTable.map(item1 => {
-                    if (item.bookNumber == item1.bookNumber && item.roundNumber == item1.roundNumber && item.groupNumber == item1.groupNumber) {
-                        var i = newData.indexOf(item1)
-                        if (i > -1) newData.splice(i, 1)
-                    }
-                })
-            })
-            this.setState({ dataTable: newData })
-        }
-    }
-
-    onDelete = (key, e) => {
-        e.preventDefault();
-        const data = this.state.dataTable.filter(item => item.key !== key);
-        this.setState({ dataTable: data });
     }
 
     handleSearch = (selectedKeys, confirm, dataIndex) => {
@@ -51,40 +31,51 @@ export default class ShowBarcodeNumTable extends React.Component {
         });
     };
 
-    onSubmit = () => {
-        message.loading('กำลังส่งเลข', 0)
-        var newDataTable = []
-        this.state.dataTable.map(item => {
-            let tmpObj = {
-                num: "",
-                per_no: "",
-                set_no: ""
-            }
-            tmpObj.num = item.bookNumber
-            tmpObj.per_no = item.roundNumber
-            tmpObj.set_no = item.groupNumber
-            newDataTable.push(tmpObj)
-        })
-
-        let currentUser = localStorage.getItem("currentUser")
-
-        axios.post('/api/sentBarcodeNums',  JSON.stringify({"numbers": newDataTable, "username": currentUser }), { headers: HEADERS } )
-            .then(res => {
-                console.log(res.date);
-                this.setState({dataTable: []})
-                message.destroy()
-                message.success('เพิ่มสำเร็จ')
-            })
-            .catch(err => {
-                message.destroy()
-                message.error('ส่งไม่สำเร็จ กรุณาลองใหม่อีกครั้ง')
-            })
-    }
-
     handleReset = clearFilters => {
         clearFilters();
         this.setState({ searchText: '' });
     };
+
+    onDelete = (num, set, e) => {
+        let tmpDataTable = []
+        e.preventDefault();
+        this.state.dataTable.map(item => {
+            if (item.num == num && item.set_no == set) {
+                this.setState({ wantToDeleteList: [...this.state.wantToDeleteList, item] })
+            }
+            else tmpDataTable.push(item)
+        })
+
+        this.setState({ dataTable: tmpDataTable });
+    }
+
+    onSubmitDelete = () => {
+        message.loading('กำลังบันทึกข้อมูล', 0);
+
+        let currentUser = localStorage.getItem("currentUser")
+
+        axios.post('/api/deleteUser', JSON.stringify({ "numbers": this.state.wantToDeleteList, "username": currentUser }), { headers: { 'Content-Type': 'application/json' } })
+            .then(res => {
+                console.log(res.date);
+
+                this.setState({ wantToDeleteList: [] })
+
+                message.destroy()
+                message.success('บันทึกสำเร็จ');
+            })
+            .catch(err => {
+                message.destroy()
+                message.error('บันทึกไม่สำเร็จ');
+            })
+
+    }
+
+    onCancelDelete = () => {
+        let tmp = this.state.dataTable.concat(this.state.wantToDeleteList)
+        this.setState({ dataTable: tmp })
+        this.setState({ wantToDeleteList: [] })
+        message.destroy()
+    }
 
     getColumnSearchProps = dataIndex => ({
         filterDropdown: ({ setSelectedKeys, selectedKeys, confirm, clearFilters }) => (
@@ -142,24 +133,24 @@ export default class ShowBarcodeNumTable extends React.Component {
         const columns = [
             {
                 title: 'เล่มที่',
-                dataIndex: 'bookNumber',
-                key: 'bookNumber',
+                dataIndex: 'num',
+                key: 'num',
                 width: '30%',
-                ...this.getColumnSearchProps('bookNumber'),
+                ...this.getColumnSearchProps('num'),
             },
             {
                 title: 'งวดที่',
-                dataIndex: 'roundNumber',
-                key: 'roundNumber',
+                dataIndex: 'per_no',
+                key: 'per_no',
                 width: '25%',
-                ...this.getColumnSearchProps('roundNumber'),
+                ...this.getColumnSearchProps('per_no'),
             },
             {
                 title: 'ชุดที่',
-                dataIndex: 'groupNumber',
-                key: 'groupNumber',
+                dataIndex: 'set_no',
+                key: 'set_no',
                 width: '25%',
-                ...this.getColumnSearchProps('groupNumber'),
+                ...this.getColumnSearchProps('set_no'),
             },
             {
                 title: '',
@@ -170,14 +161,18 @@ export default class ShowBarcodeNumTable extends React.Component {
                     <DeleteTwoTone
                         style={{ fontSize: "18px" }}
                         twoToneColor="red"
-                        onClick={(e) => { this.onDelete(record.key, e); }}
+                        onClick={(e) => { this.onDelete(record.num, record.set_no, e); }}
                     />
                 )
             },
+
         ];
 
         return (
             <div>
+                <h4 style={{ marginBottom: '20px' }}>
+                    {this.props.title.name} {this.state.dataTable.length} รายการ
+                </h4>
                 <Table
                     bordered
                     columns={columns}
@@ -188,15 +183,37 @@ export default class ShowBarcodeNumTable extends React.Component {
                 />
                 <div className={Style.container}>
                     {
-                        (this.state.dataTable.length == 0) ?
-                            <button type="button" onClick={this.onSubmit} className={Style.submitBTN} disabled="false">
-                                ส่งเลข
+                        (this.state.wantToDeleteList.length == 0) ?
+                            <div style={{ display: "none"}}>
+                            </div>
+                            :
+                            <div style={{ fontSize: "18px", color: "red"}}>
+                                รายการที่ลบ {this.state.wantToDeleteList.length} รายการ
+                            </div>
+                    }
+                </div>
+                <div className={Style.container0}>
+                    {
+                        (this.state.wantToDeleteList.length == 0) ?
+                            <button className={Style.cancelBTN} style={{ display: "none" }}>
+                                ยกเลิก
                             </button>
                             :
-                            <Button className={Style.submitBTN} onClick={this.onSubmit} size="large">
-                                ส่งเลข
-                        </Button>
+                            <button className={Style.cancelBTN} onClick={this.onCancelDelete}>
+                                ยกเลิก
+                            </button>
                     }
+                    {
+                        (this.state.wantToDeleteList.length == 0) ?
+                            <button className={Style.saveBTN} style={{ display: "none" }}>
+                                บันทึก
+                            </button>
+                            :
+                            <button className={Style.saveBTN} onClick={this.onSubmitDelete} >
+                                บันทึก
+                            </button>
+                    }
+
                 </div>
             </div>
         );
