@@ -4,8 +4,11 @@ import { Table, Input, Button, Space } from 'antd';
 import Highlighter from 'react-highlight-words';
 import { SearchOutlined, DeleteTwoTone } from '@ant-design/icons';
 import Style from '../styles/InputTable.module.css'
-
+import axios from 'axios';
+import { message } from 'antd';
 export default class MatchTable extends React.Component {
+
+    // HEADERS = { 'Content-Type': 'application/json' }
 
     state = {
         searchText: '',
@@ -42,15 +45,36 @@ export default class MatchTable extends React.Component {
             }
             else tmpDataTable.push(item)
         })
-        
+
         this.setState({ dataTable: tmpDataTable });
     }
 
     onSubmitDelete = () => {
-        console.log(this.state.wantToDeleteList)
-        
+        message.loading('กำลังบันทึกข้อมูล', 0);
 
-        this.setState({wantToDeleteList : []})
+        let currentUser = localStorage.getItem("currentUser")
+
+        axios.post('/api/deleteUser', JSON.stringify({ "numbers": this.state.wantToDeleteList, "username": currentUser }), { headers: { 'Content-Type': 'application/json' } })
+            .then(res => {
+                console.log(res.date);
+
+                this.setState({ wantToDeleteList: [] })
+
+                message.destroy()
+                message.success('บันทึกสำเร็จ');
+            })
+            .catch(err => {
+                message.destroy()
+                message.error('บันทึกไม่สำเร็จ');
+            })
+
+    }
+
+    onCancelDelete = () => {
+        let tmp = this.state.dataTable.concat(this.state.wantToDeleteList)
+        this.setState({ dataTable: tmp })
+        this.setState({ wantToDeleteList: [] })
+        message.destroy()
     }
 
     getColumnSearchProps = dataIndex => ({
@@ -110,23 +134,23 @@ export default class MatchTable extends React.Component {
             {
                 title: 'เล่มที่',
                 dataIndex: 'num',
-                key: 'bookNumber',
+                key: 'num',
                 width: '30%',
-                ...this.getColumnSearchProps('bookNumber'),
+                ...this.getColumnSearchProps('num'),
             },
             {
                 title: 'งวดที่',
                 dataIndex: 'per_no',
-                key: 'roundNumber',
+                key: 'per_no',
                 width: '25%',
-                ...this.getColumnSearchProps('roundNumber'),
+                ...this.getColumnSearchProps('per_no'),
             },
             {
                 title: 'ชุดที่',
                 dataIndex: 'set_no',
-                key: 'groupNumber',
+                key: 'set_no',
                 width: '25%',
-                ...this.getColumnSearchProps('groupNumber'),
+                ...this.getColumnSearchProps('set_no'),
             },
             {
                 title: '',
@@ -147,7 +171,7 @@ export default class MatchTable extends React.Component {
         return (
             <div>
                 <h4 style={{ marginBottom: '20px' }}>
-                    {this.props.title.name} {this.state.dataTable.length} เล่ม
+                    {this.props.title.name} {this.state.dataTable.length} รายการ
                 </h4>
                 <Table
                     bordered
@@ -158,18 +182,35 @@ export default class MatchTable extends React.Component {
                     scroll={{ y: 340 }}
                 />
                 <div className={Style.container}>
-
-                    <button className={Style.cancelBTN} onClick={() => this.setState({wantToDeleteList : []})}>
-                        ยกเลิก
-                    </button>
                     {
                         (this.state.wantToDeleteList.length == 0) ?
-                            <button className={Style.deleteBTN} disabled="false">
-                                ลบ
+                            <div style={{ display: "none"}}>
+                            </div>
+                            :
+                            <div style={{ fontSize: "18px", color: "red"}}>
+                                รายการที่ลบ {this.state.wantToDeleteList.length} รายการ
+                            </div>
+                    }
+                </div>
+                <div className={Style.container0}>
+                    {
+                        (this.state.wantToDeleteList.length == 0) ?
+                            <button className={Style.cancelBTN} style={{ display: "none" }}>
+                                ยกเลิก
                             </button>
                             :
-                            <button className={Style.deleteBTN} onClick={this.onSubmitDelete} >
-                                ลบ {this.state.wantToDeleteList.length}
+                            <button className={Style.cancelBTN} onClick={this.onCancelDelete}>
+                                ยกเลิก
+                            </button>
+                    }
+                    {
+                        (this.state.wantToDeleteList.length == 0) ?
+                            <button className={Style.saveBTN} style={{ display: "none" }}>
+                                บันทึก
+                            </button>
+                            :
+                            <button className={Style.saveBTN} onClick={this.onSubmitDelete} >
+                                บันทึก
                             </button>
                     }
 

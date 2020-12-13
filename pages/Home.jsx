@@ -25,6 +25,8 @@ export default function Home() {
   const [currentData, setCurrentData] = useState("")
 
   useEffect(() => {
+    if(localStorage.getItem('currentUser') == null) location.href = '/'
+
     var today = new Date();
     var date = today.getDate() + '-' + (today.getMonth() + 1) + '-' + today.getFullYear();
     var time = today.getHours() + ":" + today.getMinutes() + ":" + today.getSeconds();
@@ -87,16 +89,8 @@ export default function Home() {
 
   const handleDeletedData = (deletedData) => {
     setDeletedData(deletedData)
-
-    message.success(
-      {
-        content: `ลบสำเร็จ`,
-        className: 'custom-class',
-        style: {
-          marginTop: '45px',
-        },
-      }
-    );
+    // message condition
+    message.success('ลบสำเร็จ');
   }
 
   const handleDeleteSwitch = () => {
@@ -122,6 +116,9 @@ export default function Home() {
             onChange={onInputChange}
             onKeyPress={handleKeypress}
             type="number"
+
+            // disabled
+            // label="นอกเวลาทำการ"
           />
         </div>
 

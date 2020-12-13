@@ -1,6 +1,6 @@
 import React from 'react'
 import 'antd/dist/antd.css';
-import { Table, Input, Button, Space } from 'antd';
+import { Table, Input, Button, Space, message } from 'antd';
 import Highlighter from 'react-highlight-words';
 import { SearchOutlined, DeleteTwoTone } from '@ant-design/icons';
 import Style from '../styles/InputTable.module.css'
@@ -15,6 +15,9 @@ export default class ShowBarcodeNumTable extends React.Component {
         dataTable: []
     };
 
+    componentDidMount(){
+        message.destroy()
+    }
 
     componentWillReceiveProps(nextProps) {
         if (nextProps.data !== this.props.data) {
@@ -49,6 +52,7 @@ export default class ShowBarcodeNumTable extends React.Component {
     };
 
     onSubmit = () => {
+        message.loading('กำลังส่งเลข', 0)
         var newDataTable = []
         this.state.dataTable.map(item => {
             let tmpObj = {
@@ -62,15 +66,18 @@ export default class ShowBarcodeNumTable extends React.Component {
             newDataTable.push(tmpObj)
         })
 
-        console.log(newDataTable);
-        console.log(localStorage.getItem("currentUser"));
         let currentUser = localStorage.getItem("currentUser")
-        console.log( JSON.stringify({"numbers": newDataTable, "username": currentUser }));
 
         axios.post('/api/sentBarcodeNums',  JSON.stringify({"numbers": newDataTable, "username": currentUser }), { headers: HEADERS } )
             .then(res => {
                 console.log(res.date);
                 this.setState({dataTable: []})
+                message.destroy()
+                message.success('เพิ่มสำเร็จ')
+            })
+            .catch(err => {
+                message.destroy()
+                message.error('ส่งไม่สำเร็จ กรุณาลองใหม่อีกครั้ง')
             })
     }
 

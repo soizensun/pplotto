@@ -11,6 +11,8 @@ export default function MyNums() {
   const [allNums, setAllNums] = useState([])
 
   useEffect(() => {
+    if(localStorage.getItem('currentUser') == null) location.href = '/'
+
     message.loading('กำลังดาวโหลดข้อมูล', 0);
     let currentUser = localStorage.getItem("currentUser")
     let tmpList = []
@@ -33,7 +35,7 @@ export default function MyNums() {
 
       <div className={Style.container}>
         <div className={Style.container2}>
-          <AllNumberTable data={allNums} title={{ name: "เล่มทั้งหมด" }} />
+          <AllNumberTable data={allNums} title={{ name: "รายการทั้งหมด" }} />
         </div>
       </div>
 

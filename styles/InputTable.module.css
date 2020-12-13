@@ -5,6 +5,13 @@
     margin-top: 50px;
 }
 
+.container0 {
+    display: flex;
+    justify-content: center;
+    /* background-color: bisque; */
+    margin-top: 20px;
+}
+
 .submitBTN {
     transform: translate(0%, 0%);
     margin-left: 3px;
@@ -155,6 +162,81 @@
     cursor: no-drop;
 }
 
+
+.saveBTN {
+    transform: translate(0%, 0%);
+    margin-left: 3px;
+}
+
+.saveBTN {
+    background-color: #488E70af;
+    color: white;
+    width: 150px;
+    height: 45px;
+    border: solid 1.5px #488E70;
+    font-size: 17px;
+    border-radius: 4px;
+    transition: .6s;
+    overflow: hidden;
+    font-family: monospace;
+}
+
+.saveBTN:focus {
+    outline: none;
+}
+
+.saveBTN::before {
+    content: '';
+    display: block;
+    position: absolute;
+    background: rgba(255, 255, 255, 0.7);
+    width: 60px;
+    height: 100%;
+    left: 0;
+    top: 0;
+    opacity: .5s;
+    filter: blur(30px);
+    transform: translateX(-130px) skewX(-15deg);
+}
+
+.saveBTN:after {
+    content: '';
+    display: block;
+    position: absolute;
+    background: rgba(255, 255, 255, 0.2);
+    width: 30px;
+    height: 100%;
+    left: 30px;
+    top: 0;
+    opacity: 0;
+    filter: blur(30px);
+    transform: translateX(-100px) skewX(-15deg);
+}
+
+.saveBTN:hover {
+    background: #488E70;
+    cursor: pointer;
+    color: rgb(255, 255, 255)
+}
+
+.saveBTN:hover:before {
+    transform: translateX(300px) skewX(-15deg);
+    opacity: .6;
+    transition: .9s;
+}
+
+.saveBTN:hover:before {
+    transform: translateX(300px) skewX(-15deg);
+    opacity: 1;
+    transition: .9s;
+}
+
+.saveBTN:disabled, .deleteBTN[disabled] {
+    border: 1px solid #999999;
+    background-color: #cccccc;
+    color: #666666;
+    cursor: no-drop;
+}
 
 
 .cancelBTN {

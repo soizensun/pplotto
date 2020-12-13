@@ -5,7 +5,7 @@ const resp = async (req, res) => {
 
     const HEADERS = { "Content-Type": "application/json" }
 
-    axios.post('http://192.168.1.42:5000/login', data, { headers: HEADERS })
+    axios.post('http://139.59.112.128:5000/login', data, { headers: HEADERS })
         .then(r => res.status(200).send(r.data))
         .catch((err) => {
             console.log(err);

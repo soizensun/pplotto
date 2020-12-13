@@ -8,14 +8,11 @@ const resp = async (req, res) => {
 
     delete data.username
 
-    console.log(data);
-    console.log(headers);
-
-    // axios.post('http://192.168.1.42:5000/send-num', data, { headers: HEADERS })
-    //     .then(r => res.status(200).send(r.data))
-    //     .catch((err) => {
-    //         console.log(err);
-    //     })
+    axios.post('http://139.59.112.128:5000/send-num', data, { headers: headers })
+        .then(r => res.status(200).send(r.data))
+        .catch((err) => {
+            console.log(err);
+        })
 }
 
 export default resp;

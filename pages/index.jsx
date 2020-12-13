@@ -1,5 +1,6 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import TextField from '@material-ui/core/TextField';
+import { message } from 'antd';
 import Style from '../styles/LoginPage.module.css'
 import { FormControl } from '@material-ui/core';
 import Typography from '@material-ui/core/Typography';
@@ -12,16 +13,38 @@ export default function Login() {
     const [username, setUsername] = useState("")
     const [password, setPassword] = useState("")
 
+    useEffect(() => {
+        message.destroy()
+        console.log(localStorage.getItem("currentUser"));
+    }, [])
+
     const onSubmit = () => {
-        axios.post('/api/checkLogin', JSON.stringify({"username": username, "password": password}), { headers: HEADERS })
-            .then(res => {
-                console.log(res.data);
-                if (res.data.status == true) {
-                    location.href = "/Home";
-                    localStorage.setItem('currentUser', username);
-                }
-            })
-        location.href = "/Home";
+        if (username != "" && password != "") {
+            message.loading('กำลังเข้าสู่ระบบ', 0);
+
+            axios.post('/api/checkLogin', JSON.stringify({ "username": username, "password": password }), { headers: HEADERS })
+                .then(res => {
+                    console.log(res.data);
+                    if (res.data.status == true) {
+                        message.destroy()
+                        location.href = "/Home";
+                        localStorage.setItem('currentUser', username);
+                    }
+                    else {
+                        message.destroy()
+                        message.warning('กรุณาลองใหม่', 3);
+                    }
+                })
+                .catch(err => {
+                    message.destroy()
+                    message.warning('กรุณาลองใหม่', 3);
+                })
+
+        }
+        else {
+            message.warning('กรุณาใส่ ชื่อผู้ใช้หรือรหัสผ่าน ให้ครบ', 3);
+        }
+
     }
     return (
         <>
@@ -37,7 +60,6 @@ export default function Login() {
                         <TextField
                             style={{ width: "300px" }}
                             label="ชื่อผู้ใช้"
-                            // defaultValue="user1"
                             variant="outlined"
                             onChange={e => setUsername(e.target.value)}
                         />
@@ -47,23 +69,20 @@ export default function Login() {
                             style={{ width: "300px" }}
                             type="password"
                             label="รหัสผ่าน"
-                            // defaultValue="user1"
                             variant="outlined"
                             onChange={e => setPassword(e.target.value)}
                         />
                     </div>
                     <div style={{ marginTop: "20px" }}>
-                        {/* <Link href="/Home" passHref> */}
                         <button type="button" className={Style.submitBTN} onClick={onSubmit}>
                             เข้าสู่ระบบ
-                            </button>
-                        {/* </Link> */}
+                        </button>
                     </div>
-                    <div style={{ marginTop: "5px" }}>
+                    {/* <div style={{ marginTop: "5px" }}>
                         <button type="button" className={Style.registerBTN}>
                             ลงทะเบียนผู้ใช้
                         </button>
-                    </div>
+                    </div> */}
                 </FormControl>
 
             </div>

@@ -1,15 +1,23 @@
 import React from 'react'
 import 'antd/dist/antd.css';
-import { Table, Input, Button, Space } from 'antd';
+import { Table, Input, Button, Space, message } from 'antd';
 import Highlighter from 'react-highlight-words';
 import { SearchOutlined } from '@ant-design/icons';
+import Style from '../styles/InputTable.module.css'
 
 export default class MatchTable extends React.Component {
 
     state = {
         searchText: '',
-        searchedColumn: ''
+        searchedColumn: '',
+        dataTable: []
     };
+
+    componentWillReceiveProps(nextProps) {
+        if (nextProps.data !== this.props.data) {
+            this.setState({ dataTable: nextProps.data });
+        }
+    }
 
     handleSearch = (selectedKeys, confirm, dataIndex) => {
         confirm();
@@ -81,31 +89,31 @@ export default class MatchTable extends React.Component {
             {
                 title: 'เล่มที่',
                 dataIndex: 'num',
-                key: 'bookNumber',
+                key: 'num',
                 width: '30%',
-                ...this.getColumnSearchProps('bookNumber'),
+                ...this.getColumnSearchProps('num'),
             },
             {
                 title: 'งวดที่',
                 dataIndex: 'per_no',
-                key: 'roundNumber',
+                key: 'per_no',
                 width: '25%',
-                ...this.getColumnSearchProps('roundNumber'),
+                ...this.getColumnSearchProps('per_no'),
             },
             {
                 title: 'ชุดที่',
                 dataIndex: 'set_no',
-                key: 'groupNumber',
+                key: 'set_no',
                 width: '25%',
-                ...this.getColumnSearchProps('groupNumber'),
+                ...this.getColumnSearchProps('set_no'),
             },
 
         ];
 
         return (
             <div>
-                <h4 style={{marginBottom: '20px'}}>
-                    {this.props.title.name}
+                <h4 style={{ marginBottom: '20px' }}>
+                    {this.props.title.name} {this.props.count} รายการ
                 </h4>
                 <Table
                     bordered
@@ -115,6 +123,7 @@ export default class MatchTable extends React.Component {
                     pagination={false}
                     scroll={{ y: 340 }}
                 />
+            
             </div>
         );
     }
