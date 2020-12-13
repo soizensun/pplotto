@@ -155,7 +155,7 @@ export default class ShowDeleteNumTable extends React.Component {
                     </button>
                     {
                         (this.state.dataTable.length == 0) ?
-                            <button className={Style.deleteBTN} onClick={this.confirmDelete} disabled="false">
+                            <button className={Style.deleteBTN} onClick={this.confirmDelete} disabled={false}>
                                 ลบ
                         </button>
                             :

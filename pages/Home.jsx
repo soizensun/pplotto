@@ -108,7 +108,7 @@ export default function Home() {
         
         <div className={Style.container0}>
           <TextField
-            color="red"
+            color="primary"
             label="ตัวเลขบาร์โค้ด"
             variant="outlined"
             className={Style.textInput}
@@ -129,7 +129,7 @@ export default function Home() {
                 value="deleteToggle"
                 control={<Switch color="secondary" checked={showDeleteTable} onClick={handleDeleteSwitch} />}
                 label="สแกนเพื่อลบ"
-                labelPlacement="deleteToggle"
+                labelPlacement="start"
               />
             </FormGroup>
           </FormControl>
