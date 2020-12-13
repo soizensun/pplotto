@@ -1,0 +1,62 @@
+.container {
+    text-align: center;
+    /* background-color: bisque; */
+    margin-top: 50px;
+}
+
+.container2 {
+    margin-top: 50px;
+    margin-left: 150px;
+    margin-right: 150px;
+}
+
+.textInput {
+    width: 300px;
+    /* background-color: coral; */
+    border-style: 5px solid;
+}
+
+@media only screen and (max-width: 900px) {
+    .container2 {
+        margin-top: 40px;
+        margin-left: 50px;
+        margin-right: 50px;
+    }
+}
+
+@media only screen and (max-width: 608px) {
+    .container2 {
+        margin-top: 40px;
+        margin-left: 20px;
+        margin-right: 20px;
+    }
+}
+
+
+.submitBTN {
+    background-color: #3949ABaf;
+    color: white;
+    width: 200px;
+    height: 45px;
+    border: solid 1.5px #3949AB ;
+    font-size: 17px;
+    border-radius: 4px;
+    transition: .6s;
+    overflow: hidden;
+    font-family: monospace;
+}
+
+.submitBTN:hover {
+    background: #3949AB ;
+    cursor: pointer;
+    color: rgb(255, 255, 255)
+}
+
+
+.submitBTN:disabled, .submitBTN[disabled] {
+    border: 1px solid #999999;
+    background-color: #cccccc;
+    color: #666666;
+    cursor: no-drop;
+}
+

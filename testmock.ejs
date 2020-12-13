@@ -1,0 +1,219 @@
+{
+    "imposters": [
+       {
+          "port": "9001",
+          "protocol": "http",
+          "name": "ea",
+          "stubs": [
+             {
+                "responses": [
+                   {
+                      "is": {
+                         "statusCode": "201",
+                         "headers": {
+                            "Content-Type": "application/json;charset=utf-8"
+                         },
+                         "body": {
+                            "results": [
+                               {
+                                  "num":"1748",
+                                  "per_no":"46",
+                                  "set_no":"26"
+                               },
+                               {
+                                 "num":"1748",
+                                 "per_no":"46",
+                                 "set_no":"18"
+                              },                               {
+                                 "num":"1748",
+                                 "per_no":"46",
+                                 "set_no":"23"
+                              },                               {
+                                 "num":"7049",
+                                 "per_no":"46",
+                                 "set_no":"19"
+                              },                               {
+                                 "num":"7049",
+                                 "per_no":"46",
+                                 "set_no":"23"
+                              },                               {
+                                 "num":"7049",
+                                 "per_no":"46",
+                                 "set_no":"25"
+                              }
+                            ] 
+                         }
+                      },
+                      "behaviors": [
+                         {
+                           "copy": {
+                             "from": { "query": "rmId" },
+                             "into": "${rmId}",
+                             "using": {
+                               "method": "regex",
+                               "selector": "^[0-9]{14}$",
+                               "options": { "ignoreCase": true }
+                             }
+                           }
+                         },
+                         {
+                            "copy": {
+                               "from": { "query": "citizenId" },
+                               "into": "${citizenId}",
+                               "using": {
+                                 "method": "regex",
+                                 "selector": "^[0-9]{13}$",
+                                 "options": { "ignoreCase": true }
+                               }
+                             }
+                         }
+                      ]
+                   }
+                ],
+                "predicates": [
+                   {
+                      "matches": {
+                         "method": "GET",
+                         "path": "matchedNums"
+                      }
+                   }
+                ]
+             },
+             {
+                "responses": [
+                   {
+                      "is": {
+                         "statusCode": "201",
+                         "headers": {
+                            "Content-Type": "application/json;charset=utf-8"
+                         },
+                         "body": {
+                           "results": [
+                              {
+                                 "num":"1748",
+                                 "per_no":"46",
+                                 "set_no":"26"
+                              },
+                              {
+                                "num":"1748",
+                                "per_no":"46",
+                                "set_no":"18"
+                             },                               {
+                                "num":"1748",
+                                "per_no":"46",
+                                "set_no":"23"
+                             }
+                           ] 
+                         }
+                      },
+                      "behaviors": [
+                         {
+                           "copy": {
+                             "from": { "query": "acNumber" },
+                             "into": "${acNumber}",
+                             "using": {
+                               "method": "regex",
+                               "selector": "^[0-9]{10}$",
+                               "options": { "ignoreCase": true }
+                             }
+                           }
+                         }
+                      ]
+                   }
+                ],
+                "predicates": [
+                   {
+                      "matches": {
+                         "method": "GET",
+                         "path": "unmatch"
+                      }
+                   }
+                ]
+             },
+             {
+                "responses": [
+                   {
+                      "is": {
+                         "statusCode": "201",
+                         "headers": {
+                            "Content-Type": "application/json;charset=utf-8"
+                         },
+                         "body": {
+                            "accountNumber": "${acNumber}",
+                            "accountType": "3",
+                            "homeBranch": {
+                               "bankID": "14",
+                               "branchCode": "0111",
+                               "branchRegionCode": "001",
+                               "branchName": "RATCHAYOTHIN BUREAU"
+                            },
+                            "processingBranch": "0111",
+                            "accountShortName": "",
+                            "accountLongName": "SOMCHAI SAETANG",
+                            "accountOpenDate": "",
+                            "documentNumber": "",
+                            "accountCurrency": "764",
+                            "productCode": "701",
+                            "RMCustID": "00000023495260",
+                            "customerType": "I",
+                            "customerTypeCode": "",
+                            "accountAddress": {
+                               "addressType": "01",
+                               "addressStandard": {
+                                  "addressNumber": "209/128",
+                                  "addressVillage": "บ้านสวนสามพราน",
+                                  "addressMoo": "2",
+                                  "addressTrok": "Ari",
+                                  "addressSoi": "Ari 23",
+                                  "addressThanon": "Ratchadaphisek",
+                                  "addressDistrict": "Chatuchak",
+                                  "addressAmphur": "Chatuchak",
+                                  "addressProvince": "Bangkok",
+                                  "addressCountryCode": "TH",
+                                  "addressZipCode": "10900"
+                               }
+                            },
+                            "reasonCode": "05",
+                            "objectiveCode": {
+                               "objectiveForIndividual": {
+                                  "forSavingPurpose": true,
+                                  "forSalaryAccount": true,
+                                  "forOtherPurpose": true
+                               }
+                            },
+                            "initialDeposit": {
+                               "amount": 0.00,
+                               "currency": "764"
+                            },
+                            "accountRelType": "01",
+                            "citizenId": "8885156364088"
+                         }
+                      },
+                      "behaviors": [
+                         {
+                           "copy": {
+                             "from": { "query": "acNumber" },
+                             "into": "${acNumber}",
+                             "using": {
+                               "method": "regex",
+                               "selector": "^[0-9]{10}$",
+                               "options": { "ignoreCase": true }
+                             }
+                           }
+                         }
+                      ]
+                   }
+                ],
+                "predicates": [
+                   {
+                      "matches": {
+                         "method": "POST",
+                         "path": "addSavingAC"
+                      }
+                   }
+                ]
+             }
+          ]
+       }
+    ]
+ }
