@@ -181,7 +181,7 @@ export default class MatchTable extends React.Component {
                     pagination={false}
                     scroll={{ y: 340 }}
                 />
-                <div className={Style.container}>
+                <div className={Style.container4}>
                     {
                         (this.state.wantToDeleteList.length == 0) ?
                             <div style={{ display: "none"}}>
