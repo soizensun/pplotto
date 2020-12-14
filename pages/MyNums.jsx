@@ -19,8 +19,6 @@ export default function MyNums() {
 
     axios.post('/api/getAllNums', JSON.stringify({"username": currentUser }), { headers: HEADERS } )
         .then(res => {
-            console.log(res.date);
-            
             setAllNums(res.data.results)
             message.destroy()
         })
@@ -33,9 +31,13 @@ export default function MyNums() {
   return (
     <MainLayout>
 
-      <div className={Style.container}>
+      <div className={Style.container} style={{paddingBottom: "70px"}}>
         <div className={Style.container2}>
-          <AllNumberTable data={allNums} title={{ name: "รายการทั้งหมด" }} />
+          <AllNumberTable data={allNums.filter(i => (i.per_no)%2 == 0)} title={{ name: "รายการเสรีทั้งหมด" }} />
+          <br/>
+          <hr/>
+          <br/>
+          <AllNumberTable data={allNums.filter(i => (i.per_no)%2 != 0)} title={{ name: "รายการโควต้าทั้งหมด" }} />
         </div>
       </div>
 
