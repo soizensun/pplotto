@@ -9,6 +9,7 @@ import Switch from '@material-ui/core/Switch';
 import ShowBarcodeNumTable from "../components/ShowBarcodeNumTable";
 import ShowDeleteNumTable from "../components/ShowDeleteNumTable";
 import { message } from 'antd';
+import axios from 'axios';
 
 export default function Home() {
   const [barcodeNums, setBarcodeNums] = useState([])
@@ -23,15 +24,22 @@ export default function Home() {
 
   const [deletedData, setDeletedData] = useState([])
   const [currentData, setCurrentData] = useState("")
+  const [InputFieldStatus, setInputFieldStatus] = useState(true)
 
   useEffect(() => {
-    if(localStorage.getItem('currentUser') == null) location.href = '/'
+    if (localStorage.getItem('currentUser') == null) location.href = '/'
 
     var today = new Date();
     var date = today.getDate() + '-' + (today.getMonth() + 1) + '-' + today.getFullYear();
     var time = today.getHours() + ":" + today.getMinutes() + ":" + today.getSeconds();
     var dateTime = date + '  ' + time;
     setCurrentData(dateTime)
+
+    axios.post('/api/getAdmitStatus')
+      .then(res => {
+        console.log(res.data);
+        setInputFieldStatus(res.data.status)
+      })
   }, [])
 
   const onInputChange = event => {
@@ -90,7 +98,7 @@ export default function Home() {
   const handleDeletedData = (deletedData) => {
     setDeletedData(deletedData)
     // message condition
-    message.success('ลบสำเร็จ');
+    // message.success('ลบสำเร็จ');
   }
 
   const handleDeleteSwitch = () => {
@@ -105,24 +113,39 @@ export default function Home() {
         <h6 className={Style.container}>
           {currentData}
         </h6>
-        
-        <div className={Style.container0}>
-          <TextField
-            color="primary"
-            label="ตัวเลขบาร์โค้ด"
-            variant="outlined"
-            className={Style.textInput}
-            value={inputValue}
-            onChange={onInputChange}
-            onKeyPress={handleKeypress}
-            type="number"
 
-            // disabled
-            // label="นอกเวลาทำการ"
-          />
+        <div className={Style.container0}>
+          {
+            InputFieldStatus ?
+              <TextField
+                color="primary"
+                label="ตัวเลขบาร์โค้ด"
+                variant="outlined"
+                className={Style.textInput}
+                value={inputValue}
+                onChange={onInputChange}
+                onKeyPress={handleKeypress}
+                type="number"
+              />
+              :
+              <TextField
+                color="primary"
+                label="นอกเวลาทำการ"
+                variant="outlined"
+                className={Style.textInput}
+                value={inputValue}
+                onChange={onInputChange}
+                onKeyPress={handleKeypress}
+                type="number"
+                disabled
+              />
+          }
+
         </div>
 
-        <div className={Style.container1}>
+        {/* Switch delete table */}
+
+        {/* <div className={Style.container1}>
           <FormControl component="fieldset">
             <FormGroup aria-label="position" row>
               <FormControlLabel
@@ -133,7 +156,7 @@ export default function Home() {
               />
             </FormGroup>
           </FormControl>
-        </div>
+        </div> */}
       </div>
 
       <div className={Style.container2} >

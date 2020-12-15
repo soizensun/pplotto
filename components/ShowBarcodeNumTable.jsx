@@ -15,7 +15,7 @@ export default class ShowBarcodeNumTable extends React.Component {
         dataTable: []
     };
 
-    componentDidMount(){
+    componentDidMount() {
         message.destroy()
     }
 
@@ -68,12 +68,22 @@ export default class ShowBarcodeNumTable extends React.Component {
 
         let currentUser = localStorage.getItem("currentUser")
 
-        axios.post('/api/sentBarcodeNums',  JSON.stringify({"numbers": newDataTable, "username": currentUser }), { headers: HEADERS } )
+        axios.post('/api/sentBarcodeNums', JSON.stringify({ "numbers": newDataTable, "username": currentUser }), { headers: HEADERS })
             .then(res => {
-                console.log(res.date);
-                this.setState({dataTable: []})
-                message.destroy()
-                message.success('เพิ่มสำเร็จ')
+                console.log(res.data);
+                if (res.data.status == "INPUT CLOSED") {
+                    message.success('นอกเวลาทำการ')
+                }
+                if (res.data.status == true) {
+                    this.setState({ dataTable: [] })
+                    message.destroy()
+                    message.success('เพิ่มสำเร็จ')
+                }
+                else {
+                    message.destroy()
+                    message.success('ส่งไม่สำเร็จ กรุณาลองใหม่อีกครั้ง')
+                }
+
             })
             .catch(err => {
                 message.destroy()
@@ -189,7 +199,7 @@ export default class ShowBarcodeNumTable extends React.Component {
                 <div className={Style.container}>
                     {
                         (this.state.dataTable.length == 0) ?
-                            <button type="button" onClick={this.onSubmit} className={Style.submitBTN} disabled={false}>
+                            <button type="button" onClick={this.onSubmit} className={Style.submitBTN} disabled={true}>
                                 ส่งเลข
                             </button>
                             :
