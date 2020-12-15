@@ -138,13 +138,13 @@ export default class MatchTable extends React.Component {
                 width: '30%',
                 ...this.getColumnSearchProps('num'),
             },
-            {
-                title: 'งวดที่',
-                dataIndex: 'per_no',
-                key: 'per_no',
-                width: '25%',
-                ...this.getColumnSearchProps('per_no'),
-            },
+            // {
+            //     title: 'งวดที่',
+            //     dataIndex: 'per_no',
+            //     key: 'per_no',
+            //     width: '25%',
+            //     ...this.getColumnSearchProps('per_no'),
+            // },
             {
                 title: 'ชุดที่',
                 dataIndex: 'set_no',

@@ -25,6 +25,7 @@ export default function Home() {
   const [deletedData, setDeletedData] = useState([])
   const [currentData, setCurrentData] = useState("")
   const [InputFieldStatus, setInputFieldStatus] = useState(true)
+  const [closeTime, setCloseTime] = useState("")
 
   useEffect(() => {
     if (localStorage.getItem('currentUser') == null) location.href = '/'
@@ -39,6 +40,7 @@ export default function Home() {
       .then(res => {
         console.log(res.data);
         setInputFieldStatus(res.data.status)
+        // setCloseTime(res.data.)
       })
   }, [])
 
@@ -109,10 +111,14 @@ export default function Home() {
   return (
     <MainLayout>
 
-      <div>
+      <div>        
         <h6 className={Style.container}>
+          ระบบจะปิดในเวลา : {closeTime}
+        </h6>
+        <h6 className={Style.container1}>
           {currentData}
         </h6>
+
 
         <div className={Style.container0}>
           {
