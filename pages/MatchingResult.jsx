@@ -106,12 +106,12 @@ export default function MatchingResult() {
         <MainLayout>
             <div className={Style.container}>
                 <Tabs type="card" centered size="large">
-                    <TabPane tab="รายการที่ชน" key="1">
+                    <TabPane tab="รายการที่ชนเจอ" key="1">
 
                         <div className={Style.container2}>
                             <MatchTable
                                 data={matchedData.filter(i => (i.per_no) % 2 == 0)}
-                                title={{ name: "รายการชุดเสรีที่ชน" }}
+                                title={{ name: "เล่มเสรีที่ชนเจอ" }}
                                 count={matchedData.filter(i => (i.per_no) % 2 == 0).length} />
                         </div>
                         <div className={Style.container}>
@@ -134,7 +134,7 @@ export default function MatchingResult() {
                         <div className={Style.container2}>
                             <MatchTable
                                 data={matchedData.filter(i => (i.per_no) % 2 != 0)}
-                                title={{ name: "รายการชุดโควต้าที่ชน" }}
+                                title={{ name: "เล่มโควตาที่ชนเจอ" }}
                                 count={matchedData.filter(i => (i.per_no) % 2 != 0).length} />
                         </div>
                         <div className={Style.container} style={{paddingBottom: "70px"}}>
@@ -155,12 +155,12 @@ export default function MatchingResult() {
                         </div>
 
                     </TabPane>
-                    <TabPane tab="รายการที่ไม่ชน" key="2">
+                    <TabPane tab="รายการที่ไม่ชนไม่เจอ" key="2">
 
                         <div className={Style.container2}>
                             <MatchTable 
                                 data={unMatchedData.filter(i => (i.per_no) % 2 == 0)} 
-                                title={{ name: "รายการชุดเสรีที่ไม่ชน" }} 
+                                title={{ name: "เล่มเสรีที่ชนไม่เจอ" }} 
                                 count={unMatchedData.filter(i => (i.per_no) % 2 == 0).length} />
                         </div>
                         <div className={Style.container}>
@@ -183,7 +183,7 @@ export default function MatchingResult() {
                         <div className={Style.container2}>
                             <MatchTable 
                                 data={unMatchedData.filter(i => (i.per_no) % 2 != 0)} 
-                                title={{ name: "รายการชุดโควต้าที่ไม่ชน" }} 
+                                title={{ name: "เล่มโควตาที่ชนไม่เจอ" }} 
                                 count={unMatchedData.filter(i => (i.per_no) % 2 != 0).length} />
                         </div>
                         <div className={Style.container} style={{paddingBottom: "70px"}}>
