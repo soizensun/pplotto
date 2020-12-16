@@ -30,6 +30,13 @@
     border-style: 5px solid;
 }
 
+.textInputTiny {
+    width: 100px;
+    /* background-color: coral; */
+    border-style: 5px solid;
+    padding: 3px;
+}
+
 @media only screen and (max-width: 900px) {
     .container2 {
         margin-top: 40px;
@@ -46,3 +53,35 @@
     }
 }
 
+.submitBTN {
+    background-color: #488e70af;
+    color: white;
+    height: 56px;
+    width: 70px;
+    border: solid 1.5px #488e70 ;
+    font-size: 17px;
+    border-radius: 4px;
+    transition: .6s;
+    overflow: hidden;
+    font-family: monospace;
+}
+
+.submitBTN:focus {
+    outline: none;
+}
+
+
+.submitBTN:hover {
+    background: #488e70 ;
+    cursor: pointer;
+    color: rgb(255, 255, 255)
+}
+
+
+
+.submitBTN:disabled, .submitBTN[disabled] {
+    border: 1px solid #999999;
+    background-color: #cccccc;
+    color: #666666;
+    cursor: no-drop;
+}

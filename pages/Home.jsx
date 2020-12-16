@@ -19,6 +19,11 @@ export default function Home() {
   const [needToDeleteNums, setNeedToDeleteNums] = useState([])
 
   const [inputValue, setInputValue] = useState("")
+
+  const [numValue, setNumValue] = useState("")
+  const [perValue, setPerValue] = useState("")
+  const [setValue, setSetValue] = useState("")
+
   const [objKey, setObjKey] = useState(1)
   const [showDeleteTable, setShowDeleteTable] = useState(false)
 
@@ -43,6 +48,40 @@ export default function Home() {
         // setCloseTime(res.data.)
       })
   }, [])
+
+  const addNum = () => {
+    var tmpObj = {
+      key: "",
+      bookNumber: "",
+      roundNumber: "",
+      groupNumber: ""
+    }
+
+    if (numValue.length != 0 && setValue.length != 0 && perValue.length != 0) {
+      if (showDeleteTable == false) {
+        setObjKey(objKey + 1)
+        tmpObj.key = objKey
+        tmpObj.bookNumber = numValue
+        tmpObj.groupNumber = setValue
+        tmpObj.roundNumber = perValue
+
+        setBarcodeNums([tmpObj])
+      }
+      else{
+        setObjKey(objKey + 1)
+        tmpObj.key = objKey
+        tmpObj.bookNumber = numValue
+        tmpObj.groupNumber = setValue
+        tmpObj.roundNumber = perValue
+
+        setNeedToDeleteNums([tmpObj])
+      }
+
+      setNumValue("")
+      setPerValue("")
+      setSetValue("")
+    }
+  }
 
   const onInputChange = event => {
     setInputValue(event.target.value)
@@ -111,7 +150,7 @@ export default function Home() {
   return (
     <MainLayout>
 
-      <div>        
+      <div>
         <h6 className={Style.container}>
           ระบบจะปิดในเวลา : {closeTime}
         </h6>
@@ -146,6 +185,75 @@ export default function Home() {
                 disabled
               />
           }
+
+
+
+        </div>
+        <h6 className={Style.container0}>
+          หรือ
+        </h6>
+        <div className={Style.container0}>
+          <form>
+            <TextField
+              id="numInput"
+              color="primary"
+              label="เล่มที่"
+              variant="outlined"
+              className={Style.textInputTiny}
+              value={numValue}
+              onChange={(e) => {
+                if (e.target.value.length <= 4) {
+                  setNumValue(e.target.value)
+                  if (e.target.value.length == 4) {
+                    document.getElementById("perInput").focus()
+                  }
+                }
+
+              }}
+              type="number"
+              style={{ margin: "5px" }}
+            />
+            <TextField
+              id="perInput"
+              color="primary"
+              label="งวดที่"
+              variant="outlined"
+              className={Style.textInputTiny}
+              value={perValue}
+              onChange={(e) => {
+                if (e.target.value.length <= 2) {
+                  setPerValue(e.target.value)
+                  if (e.target.value.length == 2) {
+                    document.getElementById("setInput").focus()
+                  }
+                }
+              }}
+              type="number"
+              style={{ margin: "5px" }}
+            />
+            <TextField
+              id="setInput"
+              label="ชุดที่"
+              variant="outlined"
+              className={Style.textInputTiny}
+              value={setValue}
+              onChange={(e) => {
+                if (e.target.value.length <= 2) setSetValue(e.target.value)
+              }}
+              type="number"
+              style={{ margin: "5px" }}
+            />
+            {
+              (numValue.length == 4 && perValue.length == 2 && setValue.length == 2) ?
+                <button type="submit" onClick={addNum} className={Style.submitBTN} style={{ margin: "5px" }}>
+                  เพิ่มเลข
+                </button>
+                :
+                <button type="button" disabled="true" className={Style.submitBTN} style={{ margin: "5px" }}>
+                  เพิ่มเลข
+                </button>
+            }
+          </form>
 
         </div>
 
