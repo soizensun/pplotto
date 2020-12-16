@@ -189,7 +189,7 @@ export default function Home() {
 
 
         </div>
-        <h6 className={Style.container0}>
+        {/* <h6 className={Style.container0}>
           หรือ
         </h6>
         <div className={Style.container0}>
@@ -208,7 +208,6 @@ export default function Home() {
                     document.getElementById("perInput").focus()
                   }
                 }
-
               }}
               type="number"
               style={{ margin: "5px" }}
@@ -255,9 +254,7 @@ export default function Home() {
             }
           </form>
 
-        </div>
-
-        {/* Switch delete table */}
+        </div> */}
 
         {/* <div className={Style.container1}>
           <FormControl component="fieldset">
