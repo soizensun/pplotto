@@ -189,7 +189,7 @@ export default function Home() {
 
 
         </div>
-        {/* <h6 className={Style.container0}>
+         <h6 className={Style.container0}>
           หรือ
         </h6>
         <div className={Style.container0}>
@@ -254,9 +254,9 @@ export default function Home() {
             }
           </form>
 
-        </div> */}
+        </div> 
 
-        {/* <div className={Style.container1}>
+        { <div className={Style.container1}>
           <FormControl component="fieldset">
             <FormGroup aria-label="position" row>
               <FormControlLabel
@@ -267,7 +267,7 @@ export default function Home() {
               />
             </FormGroup>
           </FormControl>
-        </div> */}
+        </div> }
       </div>
 
       <div className={Style.container2} >
