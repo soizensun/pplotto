@@ -30,7 +30,7 @@ export default function Home() {
   const [deletedData, setDeletedData] = useState([])
   const [currentData, setCurrentData] = useState("")
   const [InputFieldStatus, setInputFieldStatus] = useState(true)
-  const [closeTime, setCloseTime] = useState("14.30 น.")
+  const [closeTime, setCloseTime] = useState("14.00 น.")
 
   useEffect(() => {
     if (localStorage.getItem('currentUser') == null) location.href = '/'
