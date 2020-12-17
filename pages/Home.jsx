@@ -30,7 +30,7 @@ export default function Home() {
   const [deletedData, setDeletedData] = useState([])
   const [currentData, setCurrentData] = useState("")
   const [InputFieldStatus, setInputFieldStatus] = useState(true)
-  const [closeTime, setCloseTime] = useState("")
+  const [closeTime, setCloseTime] = useState(" ยังไม่มีกำหนด ")
 
   useEffect(() => {
     if (localStorage.getItem('currentUser') == null) location.href = '/'
@@ -38,7 +38,7 @@ export default function Home() {
     var today = new Date();
     var date = today.getDate() + '-' + (today.getMonth() + 1) + '-' + today.getFullYear();
     var time = today.getHours() + ":" + today.getMinutes() + ":" + today.getSeconds();
-    var dateTime = date + '  ' + time;
+    var dateTime = "คุณเข้ามาใช้งานเมื่อ: " + date + '  ' + time;
     setCurrentData(dateTime)
 
     axios.post('/api/getAdmitStatus')
